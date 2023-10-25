@@ -1,0 +1,228 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.0
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1:3306
+-- Generation Time: Apr 24, 2023 at 09:47 AM
+-- Server version: 8.0.31
+-- PHP Version: 8.0.26
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `tms`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
+DROP TABLE IF EXISTS `admin`;
+CREATE TABLE IF NOT EXISTS `admin` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `UserName` varchar(100) DEFAULT NULL,
+  `Password` varchar(100) DEFAULT NULL,
+  `updationDate` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`id`, `UserName`, `Password`, `updationDate`) VALUES
+(1, 'admin', 'f925916e2754e5e03f75dd58a5733251', '2020-05-11 11:18:49');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tblbooking`
+--
+
+DROP TABLE IF EXISTS `tblbooking`;
+CREATE TABLE IF NOT EXISTS `tblbooking` (
+  `BookingId` int NOT NULL AUTO_INCREMENT,
+  `PackageId` int DEFAULT NULL,
+  `UserEmail` varchar(100) DEFAULT NULL,
+  `FromDate` varchar(100) DEFAULT NULL,
+  `ToDate` varchar(100) DEFAULT NULL,
+  `Comment` mediumtext,
+  `RegDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` int DEFAULT NULL,
+  `CancelledBy` varchar(5) DEFAULT NULL,
+  `UpdationDate` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`BookingId`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tblbooking`
+--
+
+INSERT INTO `tblbooking` (`BookingId`, `PackageId`, `UserEmail`, `FromDate`, `ToDate`, `Comment`, `RegDate`, `status`, `CancelledBy`, `UpdationDate`) VALUES
+(1, 1, 'jass@gmail.com', '2023-01-09', '2023-01-12', 'I want this package.', '2023-01-09 03:38:36', 2, 'u', '2023-01-10 06:53:45'),
+(2, 2, 'kima@gmail.com', '2023-01-21', '2023-01-24', 'There is some discount', '2023-01-21 06:43:25', 1, '', '2023-01-22 06:52:44'),
+(3, 4, 'joo@gmail.com', '2023-02-11', '2023-02-14', 'When I get conformation', '2023-02-11 02:44:39', 2, 'a', '2023-02-12 05:49:55'),
+(4, 1, 'jet@gmail.com', '2023-03-02', '2023-03-13', 'hhkhiu', '2023-03-11 19:41:29', 0, NULL, NULL),
+(5, 2, 'jet@gmail.com', '2023-03-16', '2023-03-21', 'hhkhiu', '2023-03-12 11:36:46', 0, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tblenquiry`
+--
+
+DROP TABLE IF EXISTS `tblenquiry`;
+CREATE TABLE IF NOT EXISTS `tblenquiry` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `FullName` varchar(100) DEFAULT NULL,
+  `EmailId` varchar(100) DEFAULT NULL,
+  `MobileNumber` char(10) DEFAULT NULL,
+  `Subject` varchar(100) DEFAULT NULL,
+  `Description` mediumtext,
+  `PostingDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `Status` int DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tblenquiry`
+--
+
+INSERT INTO `tblenquiry` (`id`, `FullName`, `EmailId`, `MobileNumber`, `Subject`, `Description`, `PostingDate`, `Status`) VALUES
+(1, 'Janorious Jass', 'Jass@gmail.com', '9345196954', 'Enquiry for local Area', 'Kindly provide me more offer.', '2023-01-12 06:30:32', 1),
+(2, 'Josin', 'Joo@gmail.com', '9003158784', 'Any offer for North', 'Any Offer for north', '2023-02-12 04:32:41', 1),
+(4, 'kimaja', 'kima@gmail.com', '7867053743', 'Enquiry', 'Any Offer for North Trip', '2023-03-02 06:31:38', 1),
+(5, 'jet', 'jet@gmail.com', '0979021079', 'czzc', 'tu6', '2023-03-12 11:35:58', 1),
+(6, 'jet', 'jet@gmail.com', '0979021079', 'czzc', 'tu6', '2023-03-12 11:36:15', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tblissues`
+--
+
+DROP TABLE IF EXISTS `tblissues`;
+CREATE TABLE IF NOT EXISTS `tblissues` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `UserEmail` varchar(100) DEFAULT NULL,
+  `Issue` varchar(100) DEFAULT NULL,
+  `Description` mediumtext,
+  `PostingDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `AdminRemark` mediumtext,
+  `AdminremarkDate` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tblissues`
+--
+
+INSERT INTO `tblissues` (`id`, `UserEmail`, `Issue`, `Description`, `PostingDate`, `AdminRemark`, `AdminremarkDate`) VALUES
+(6, 'test@gmail.com', 'Booking Issues', 'I am not able to book package', '2020-07-08 06:36:03', 'Ok, We will fix the issue asap', '2020-07-08 06:55:22'),
+(10, 'jet@gmail.com', 'Booking Issues', 'c', '2023-03-11 19:57:00', NULL, NULL),
+(11, 'jet@gmail.com', 'Cancellation', 'cb', '2023-03-11 19:59:21', 'marked', '2023-04-05 07:38:01'),
+(12, 'jet@gmail.com', 'Other', 'c', '2023-04-03 14:14:44', NULL, NULL),
+(13, NULL, NULL, NULL, '2023-04-08 17:46:41', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tblpages`
+--
+
+DROP TABLE IF EXISTS `tblpages`;
+CREATE TABLE IF NOT EXISTS `tblpages` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `type` varchar(255) DEFAULT '',
+  `detail` longtext,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tblpages`
+--
+
+INSERT INTO `tblpages` (`id`, `type`, `detail`) VALUES
+(1, 'terms', '																														<p align=\"justify\"><font size=\"2\"><strong><font color=\"#990000\">&nbsp;TERMS</font><br><br></strong>&nbsp;</font><span style=\"font-family: &quot;trebuchet ms&quot;;\"><span style=\"font-size: small;\">Welcome to Yahoo! India. 1Yahoo Web Services India Private Limited Yahoo\", \"we\" or \"us\" as the case may be) provides the Service (defined below) to you, subject to the following Terms of Service (\"TOS\"), which may be updated by us from time to time without notice to you. You can review the most current version of the TOS at any time at:&nbsp;</span><a href=\"http://in.docs.yahoo.com/info/terms/\" style=\"background-color: rgb(255, 255, 255); font-size: small;\">http://in.docs.yahoo.com/info/terms/</a><span style=\"font-size: small;\">. In addition, when using particular Yahoo services or third party services, you and Yahoo shall be subject to any posted guidelines or</span><font size=\"2\" style=\"\">rules applicable to such services which may be posted from time to time. All such guidelines or rules, which maybe subject to change, are hereby incorporated by reference into the TOS. In most cases the guides and rules are specific to a particular part of the Service and will assist you in applying the TOS to that part, but to the extent of any inconsistency between the TOS and any guide or rule, the TOS will prevail. We may also offer other services from time to time that are governed by different Terms of Services, in which case the TOS do not apply to such&nbsp;</font><span style=\"font-size: small;\">other services if and to the extent expressly excluded by such different Terms of Services. Yahoo also may offer other services from time to time that are governed by different Terms of Services. These TOS do not apply to such other services that are governed by different Terms of Service.</span></span></p>\r\n<p align=\"justify\"><span style=\"font-family: &quot;trebuchet ms&quot;;\"><font size=\"2\">Welcome to Yahoo! India. Yahoo Web Services India Private Limited Yahoo\", \"we\" or \"us\" as the case may be) provides the Service (defined below) to you, subject to the following Terms of Service (\"TOS\"), which may be updated by us from time to time without notice to you. You can review the most current version of the TOS at any time at: </font><a href=\"http://in.docs.yahoo.com/info/terms/\"><font size=\"2\">http://in.docs.yahoo.com/info/terms/</font></a><font size=\"2\">. In addition, when using particular Yahoo services or third party services, you and Yahoo shall be subject to any posted guidelines or rules applicable to such services which may be posted from time to time. All such guidelines or rules, which maybe subject to change, are hereby incorporated by reference into the TOS. In most cases the guides and rules are specific to a particular part of the Service and will assist you in applying the TOS to that part, but to the extent of any inconsistency between the TOS and any guide or rule, the TOS will prevail. We may also offer other services from time to time that are governed by different Terms of Services, in which case the TOS do not apply to such other services if and to the extent expressly excluded by such different Terms of Services. Yahoo also may offer other services from time to time that are governed by different Terms of Services. These TOS do not apply to such other services that are governed by different Terms of Service. </font></span></p>\r\n<p align=\"justify\"><span style=\"font-family: &quot;trebuchet ms&quot;;\"><font size=\"2\">Welcome to Yahoo! India. Yahoo Web Services India Private Limited Yahoo\", \"we\" or \"us\" as the case may be) provides the Service (defined below) to you, subject to the following Terms of Service (\"TOS\"), which may be updated by us from time to time without notice to you. You can review the most current version of the TOS at any time at: </font><a href=\"http://in.docs.yahoo.com/info/terms/\"><font size=\"2\">http://in.docs.yahoo.com/info/terms/</font></a></span><font size=\"2\"><span style=\"font-family: &quot;trebuchet ms&quot;;\">. In addition, when using particular Yahoo services or third party services, you and Yahoo shall be subject to any posted guidelines or rules applicable to such services which may be posted from time to time. All such guidelines or rules, which maybe subject to change, are hereby incorporated by reference into the TOS. In most cases the guides and rules are specific to a particular part of the Service and will assist you in applying the TOS to that part, but to the extent of any inconsistency between the TOS and any guide or rule, the TOS will prevail. </span>We may also offer other services from time to time that are governed by different Terms of Services, in which case the TOS do not apply to such other services if and to the extent expressly excluded by such different Terms of Services. Yahoo also may offer other services from time to time that are governed by different Terms of Services. These TOS do not apply to such other services that are governed by different Terms of Service. </font></p>\r\n										\r\n										\r\n										'),
+(3, 'Aboutus', '																																																		<div style=\"text-align: left;\"><span style=\"color: rgb(0, 0, 0); font-family: Georgia; font-size: 15px; text-align: justify; font-weight: bold;\">Welcome to Tourism Management System!!!</span></div><div style=\"text-align: left;\"><span style=\"text-align: justify;\"><p style=\"\"><span style=\"color: rgb(0, 0, 0); font-family: &quot;comic sans ms&quot;; font-size: 15px;\">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span style=\"color: rgb(0, 0, 0); font-family: &quot;comic sans ms&quot;; font-size: 15px;\">&nbsp;</span><span style=\"text-align: left; color: rgb(0, 0, 0); font-size: 15px; font-family: helvetica;\">Welcome to our tourism webpage! We are a team of travel enthusiasts dedicated to providing you with the best travel experience possible. Our goal is to help you explore and discover new destinations, cultures, and experiences around the world.</span></p><p style=\"\"><span style=\"color: rgb(0, 0, 0); font-size: 15px; font-family: helvetica;\">With years of experience in the travel industry, we have carefully crafted a variety of travel packages and itineraries to suit every kind of traveler - from adventure seekers to luxury vacationers, from solo travelers to families and groups. We strive to ensure that each trip is unique, authentic, and tailored to your preferences.</span></p></span><p style=\"text-align: justify;\"><span style=\"font-family: helvetica;\"><span style=\"color: rgb(0, 0, 0); font-size: 15px;\">We work with a network of trusted partners and suppliers to ensure that you receive the highest quality of service and value for your money. Our team is available around the clock to assist you with any questions or concerns you may have before, during, and after your trip.</span><br></span></p><p style=\"text-align: justify;\"><span style=\"font-family: helvetica;\"><span style=\"color: rgb(0, 0, 0); font-size: 15px;\">At our core, we believe that travel has the power to transform lives, create unforgettable memories, and bring people together. We are committed to promoting sustainable and responsible tourism practices, and to supporting local communities and businesses.</span><br></span></p><p style=\"text-align: justify;\"><span style=\"color: rgb(0, 0, 0); font-size: 15px; font-family: helvetica;\">Whether you\'re planning your next getaway or dreaming of your next adventure, we invite you to join us on an incredible journey of discovery and exploration. Thank you for choosing us as your travel partner!</span><br></p></div>\r\n										\r\n										\r\n										'),
+(11, 'contact', '																				<span style=\"color: rgb(0, 0, 0); font-family: &quot;Open Sans&quot;, Arial, sans-serif; font-size: 14px; text-align: justify;\">Address------J-890 Dwarka House New Delhi-110096</span>');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbltourpackages`
+--
+
+DROP TABLE IF EXISTS `tbltourpackages`;
+CREATE TABLE IF NOT EXISTS `tbltourpackages` (
+  `PackageId` int NOT NULL AUTO_INCREMENT,
+  `PackageName` varchar(200) DEFAULT NULL,
+  `PackageType` varchar(150) DEFAULT NULL,
+  `PackageLocation` varchar(100) DEFAULT NULL,
+  `PackagePrice` int DEFAULT NULL,
+  `PackageFetures` varchar(255) DEFAULT NULL,
+  `PackageDetails` mediumtext,
+  `PackageImage` varchar(100) DEFAULT NULL,
+  `Creationdate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `UpdationDate` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`PackageId`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbltourpackages`
+--
+
+INSERT INTO `tbltourpackages` (`PackageId`, `PackageName`, `PackageType`, `PackageLocation`, `PackagePrice`, `PackageFetures`, `PackageDetails`, `PackageImage`, `Creationdate`, `UpdationDate`) VALUES
+(1, 'A Blissful Tour In Munnar ( 3 Days & 2 Nights)', 'Friends & Family', 'Munnar, Kerala', 4000, 'Breakfast, Sightseeing, Stay Included, Transport', 'DAY 1: From Cochin to Munnar-\r\n            Cheeyappara Waterfalls - Leisure Time - Tea plantations\r\nDAY 2: Local sightseeing tour of Munnar-\r\n           Eravikulam National Park - Echo Point - Tea Museum\r\nDAY 3: Transfer to Cochin and Departure\r\n', 'mu 4.jpg', '2020-07-08 05:21:58', '2023-04-06 05:25:12'),
+(2, 'Camping at Kolukkumalai', 'Adventure', 'Kolukkumalai, Kerala', 2100, 'Breakfast and Dinner, Factory Visit Make your own tea program for more than 1 day camp, Trekking / Hiking', 'Jeep transfer from Suriyanalle to Kolukkumalai not included in this package and will be extra. This is usually Rs.2,500/- in each way. There are jeeps at suriyanalle village that you could hire yourself or we will be happy to make arrangements.\r\n\r\nGroup Booking Discount - WEEKEND\r\n25 - 50 persons - Rs.2,500/-\r\n51 - 100 persons- Rs.2,250/-', 'ko 2.jpg', '2020-07-08 05:37:40', '2023-04-06 05:26:07'),
+(3, 'Wayanad (4 Days & 3 Nights) ', 'family', 'Wayanad, kerala', 7000, 'Free Pickup and drop facility, Free Wi-fi , Free professional guide', 'DAY 1: Wayanad: Arrival, Sightseeing\r\nDAY 2: Wayanad: Edakkal Caves\r\nDAY 3: Wayanad: Kuruva Island - Wildlife Sanctuary\r\nDAY 4: Wayanad: Departure           ', 'wa2.webp', '2020-07-08 05:41:07', '2023-04-06 05:26:30'),
+(4, 'vagamon (3 Days & 2 Nights)', 'Family ', 'Vagamon, Kerala, India', 7000, 'Upto 3 Stars hotels,  Meals, Sightseeing,  Transport ', 'DAY 1: Vagamon: Arrival, sunset in Elaveezha Poonchira\r\nDAY 2: Vagamon: Sightseeing tour to a plantation\r\nDAY 3: Vagamon: Departure', 'vag3.jpg', '2020-07-08 05:45:58', '2023-04-06 05:26:56'),
+(5, 'Ponmudi Hill Station', 'Adventure', 'Ponmudi Hill station,Thirvandram, Kerala', 2000, 'Free pick up and drop facility, Free Food', 'Trek to Seethatheertham.....\r\nIt is a 4 km trekking programme to the streams of Seethatheertham in Ponmudi. You hike through curtains of light and shade to see ruins of temples and can also see the footprints of Goddess Seetha, as it is believed by the locals. They also believe that once the goddess satiated her thirst in this river. If you are lucky, herds of elephants and gaurs can be spotted here. \r\nInterested wildlife photographers and bird watchers can avail specially arrange this package. ', 'pon1.jpg', '2020-07-08 05:49:13', '2023-04-06 05:27:47'),
+(6, 'Dandeli', 'Group', 'Kerala', 3500, 'Free Breakfast, Free Pick up drop facility', 'Changu Lake and New Baba Mandir excursion | View the sunrise from Tiger Hill | Get Blessed at the famous Rumtek Monastery', 'dan 1.jpg', '2020-07-08 05:51:26', '2023-04-06 05:28:22'),
+(7, 'Chikmangalore', 'Family Package', 'Kerala', 4500, 'Breakfast,  Accommodation » Pick-up » Drop » Sightseeing', 'After arrival at Guwahati airport meet our representative & proceed for Shillong. Shillong is the capital and hill station of Meghalaya, also known as Abode of Cloud, one of the smallest states in India. En route visit Barapani lake. By afternoon reach at Shillong. Check in to the hotel. Evening is leisure. Spent time as you want. Visit Police bazar. Overnight stay at Shillong.', 'chi 3.jpg', '2020-07-08 05:54:42', '2023-04-06 05:28:50'),
+(8, 'Nandhi Hills', 'Domestic Packages', 'Kerala', 4500, 'Free Breakfast, Free Wi-fi', 'Changu Lakeand New Baba Mandir excursion | Yumthang Valley tour | Gurudongmar Lake excursion | Night stay in Lachen', 'nan 1.webp', '2020-07-08 06:05:24', '2023-04-06 05:29:40'),
+(10, 'Charming Alleppey (3 Days & 2 Nights )', 'Couples ', 'Cochin TO Alleppey (53km)', 5999, 'Hotel, Breakfast, Sightseeing, Stay Included, Transfer', 'DAY 1: Transfer to Alleppey and Sightseeing\r\nDAY 2: Backwater Cruise tour - Houseboat Stay - Boat Cruise - Leisure Day\r\nDAY 3: Departure - Check Out', 'bt2.jpg', '2023-03-11 10:24:51', '2023-04-06 05:31:17');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tblusers`
+--
+
+DROP TABLE IF EXISTS `tblusers`;
+CREATE TABLE IF NOT EXISTS `tblusers` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `FullName` varchar(100) DEFAULT NULL,
+  `MobileNumber` char(10) DEFAULT NULL,
+  `EmailId` varchar(70) DEFAULT NULL,
+  `Password` varchar(100) DEFAULT NULL,
+  `RegDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `UpdationDate` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `EmailId` (`EmailId`),
+  KEY `EmailId_2` (`EmailId`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tblusers`
+--
+
+INSERT INTO `tblusers` (`id`, `FullName`, `MobileNumber`, `EmailId`, `Password`, `RegDate`, `UpdationDate`) VALUES
+(9, 'jet', '9790210790', 'jet@gmail.com', '54184fb4ec5e4b631d1491b6335eb6a6', '2023-03-11 12:01:42', NULL),
+(12, NULL, NULL, NULL, 'd41d8cd98f00b204e9800998ecf8427e', '2023-04-03 14:14:44', NULL),
+(13, 'ccccccccccc', 'cccccccccc', 'cc  c ccccccccc', '5bd68d9d1001fae572b29b544d916d11', '2023-04-08 17:46:41', NULL);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
